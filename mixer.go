@@ -59,8 +59,8 @@ func (m *Mixer[T]) Handler(handler Handler[T]) http.HandlerFunc {
 		}
 
 		// After Hooks
-		for _, after := range m.afterHooks {
-			after(context)
+		for i := len(m.afterHooks) - 1; i >= 0; i-- {
+			m.afterHooks[i](context)
 		}
 	})
 }
